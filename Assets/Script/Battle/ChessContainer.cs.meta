@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3c200750da350e1428d3e06450dc58ce
+timeCreated: 1472442324
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - refMain: {instanceID: 0}
+  - my_chess: {instanceID: 0}
+  - mat_sprite: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - mat_mesh_diffuse: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

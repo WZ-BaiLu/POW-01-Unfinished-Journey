@@ -1,0 +1,59 @@
+2018年5月30日21:38:05
+[todo]Main.cs:67——卡片信息部分，应该单独建个对象处理
+[todo]Main.cs:78——卡片信息-技能文本及颜色，应该单独建个对象处理
+[todo]Main.cs:91——Dictionary<long, Chess> dic_chess存储运行中的棋子，不应该被直接访问
+[todo]Main.cs:105 now_phase_type 应该已经用TurnPhase流程代替，检查是否完全不影响流程
+[todo]Main.cs:108 b_setchess 同上。初步检查没有在用
+[todo]Main.cs:110 b_phase_trigger似乎也没有在用
+[todo]Main.cs:124 b_moving_chess，应该也要封装一个对象处理
+[todo]Main.cs:250 initMap();原本读取地图文件数据，需要接入新格式
+[todo]Main.cs:382 地图显示修改方法，需要整合到chess_container类的方法中
+[todo]Main.cs:616 重复了switch(click_target)判断，需要精简一下
+[todo]Main.cs:847 回合技术触发的BUFF没有被引用，需要结合turnphase体系检查
+[todo]Main.cs:901 judgeSelectCard没有使用必要，完全被selectCard完成了。甚至已经被turn_phase的SelectCard方法搞定
+[TODO]2018年5月31日19:06:52。my_mapData_Source与State不必要了，判断方式需要重新设计.
+[todo-big]Main.cs:~1300 旧的系统中使用StageDancer体系控制逻辑和动画，下一步制作一个表现和逻辑分开的系统。
+[TODO]去除地图尺寸相关数据
+[TODO]清理旧的地图数据加载方法
+[todo]新建功能直接创建场景，自动生成ScriptableObject用于存储并关联好。彻底放弃以往的新建功能
+[todo]init_grid:LevelMapData及其中的my_grid_t_type数组可以删掉
+[todo]	删除LevelMapData中以下过期内容
+public int[] my_size;
+public eMapGridType[] my_grid_t_type;//地形数据（为了方便使用json，放弃多维数组做法，将所有数据存到同一行）
+public int[] my_grid_godir;
+
+
+[todo-review]把UnitList做成了间接编辑数据的工具，unitlist中的datalist存储指向map_data.list_unit_data。
+
+[*]grid不自动从MapData生成场景，直接关联运行
+[*]完成直接从AssetBundle加载Scene进行游戏
+[*]MapEditor-InitScene函数只在新建时运行
+[*]编辑器避免打开和加载地图时删除地图
+[+]增加Scene窗口表现，展示关联
+[+]重写编辑器，关联相邻的grid
+[*]editor中my_grids和level_control中的grid访问产生冲突
+[*]自动关联适合场景的ScriptableObject到编辑器中
+[*]地形选择后切换种类，没能有效修改
+[+]编译后Editor重新Enable，OnEnable中加入初始化，保证编译后编辑器不用重开
+[+]地形编辑器改成Grid添加、删除组件
+[+]单个grid手动关联
+[+]单个grid手动对齐
+[+]单个grid生成时自动关联，自动选中新格子
+[*]单位页面可拖动列表行高有问题
+[*]事件页面可拖动列表行高有问题
+[+]单位所属格子需要可修改
+[*]新创建的格子number为0
+[+]加入max_grid_number，新建的格子自动读取
+[*]欲将list_grid改为Dictionary，但实际没有直接从number访问数组的情况。把唯一一个改成直接访问SelectionChange存储的格子了。
+[*]ShowUnitOnGrid定位方法太老了
+[-]调用许明蕾Editor的关联方式，避免单位编辑界面的起始格子选择越界。
+        //[XMLLayout("起始格子：", "BKKZ.POW01.MapEditor, Assembly-CSharp-Editor;Inst.arr_grid_id")]
+[+]增加了GameState类，方便获取和运算各种状态
+[*]缺陷，原本的棋盘格子有绑定点击事件，但从关卡加载的没有【并非绑定问题，是不小心在turnphase的代码中写反了game_state的if判断】
+[*]Level1寻路会出错
+[*]离开关卡后要全部删除，否则关卡状态好保留
+[todo-big]加载和删除内容放在Loading关卡，做异步处理
+[bug]UnitList中修改Grid-24的单位的属性，作用到了Grid-0的单位上
+[bug]区域编辑对应关系有问题
+[todo]不切换格子，单位列表就不更新，已经离开这个格子的单位还在格子上……
+[todo]checkContainerDownLimit写法需要更新，用搜索方式解决
