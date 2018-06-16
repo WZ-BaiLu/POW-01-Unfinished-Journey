@@ -207,6 +207,8 @@ namespace BKKZ.POW01 {
                 "Android/";  
 #elif UNITY_IPHONE
                 "iOS/";  
+#elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+                "StandaloneOSXUniversal/" ;
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
                 "StandaloneWindows/";
 #else
@@ -215,7 +217,7 @@ namespace BKKZ.POW01 {
             }
         }
         //可以被LoadAllAssets的Bundle【Scene除外
-        public static string[] bundles_dir = new string[] { "/temp/base_content_bundle", "/temp/ef", "/temp/image", "/temp/prefabs", "pve_level_data", "csv_buff", "csv_card", "csv_skill" };
+        public static string[] bundles_dir = new string[] { "temp/base_content_bundle", "temp/ef", "temp/image", "temp/prefabs", "pve_level_data", "csv_buff", "csv_card", "csv_skill" };
         public static string BattleSceneBundleDir {
             get { return Application.dataPath + "/../AssetBundles/" + BKTools.Assetbundle_Name_By_Platform + "battle_level"; }
         }
@@ -248,7 +250,7 @@ namespace BKKZ.POW01 {
         }
 
         public static GameObject addVFX(string obj) {
-            return addVFX(BKTools.getBundleObject(eResBundle.Prefabs, obj));
+            return addVFX(getBundleObject(eResBundle.Prefabs, obj));
         }
         public static GameObject addVFX(GameObject obj) {
             if (obj == null)
@@ -257,7 +259,7 @@ namespace BKKZ.POW01 {
             return vfx;
         }
         public static BK_AnimEvts addVFX_Dancer(string obj) {
-            return addVFX_Dancer(BKTools.getBundleObject(eResBundle.Prefabs, obj));
+            return addVFX_Dancer(getBundleObject(eResBundle.Prefabs, obj));
         }
         public static BK_AnimEvts addVFX_Dancer(GameObject obj) {
             if (obj == null)

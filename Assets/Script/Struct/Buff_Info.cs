@@ -24,6 +24,7 @@ namespace BKKZ.POW01
         目标类型,   //形式和技能一样
         开始特效,
         持续特效,
+        Max
     }
     public enum eBuffDamageType
     {

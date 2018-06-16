@@ -1349,6 +1349,8 @@ namespace BKKZ.POW01{
 				return;
             //场景事件托管
             SceneView.onSceneGUIDelegate += SceneGUI;
+            //Bundles内数据
+            SceneLoading.LoadBattleSceneContent();
             //地图数据
             my_map_data = null;
 			instance = this;

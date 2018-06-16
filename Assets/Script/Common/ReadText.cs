@@ -59,6 +59,14 @@ public class ReadText : MonoBehaviour {
 		Data.has_init = true;
 	}
     static void AnalyseCardData(Data inst,ArrayList list) {
+        //保险
+        string tmp;
+        if(list.Count==1){
+            tmp = (string)list[0];
+            if(tmp.Contains("\n")){
+                list = new ArrayList(tmp.Split('\n'));
+            }
+        }
         string[] str,str_img;
         str_img = new string[list.Count - 1];//头
         for (int x = 1; x < list.Count; x++) {
@@ -72,9 +80,9 @@ public class ReadText : MonoBehaviour {
             info.cost       = BKTools.ParseInt(str[(int)eCSV_Card.COST]);
             info.spd        = BKTools.ParseInt(str[(int)eCSV_Card.SPD]);
             info.mana       = BKTools.ParseInt(str[(int)eCSV_Card.MANA]);
-            info.atk         = BKTools.ParseInt(str[(int)eCSV_Card.CT]);
+            info.atk        = BKTools.ParseInt(str[(int)eCSV_Card.CT]);
             info.vct        = (eCard_Vocation)BKTools.ParseInt(str[(int)eCSV_Card.VCT]);
-            info.rare        = BKTools.ParseInt(str[(int)eCSV_Card.RARE]);
+            info.rare       = BKTools.ParseInt(str[(int)eCSV_Card.RARE]);
             info.stk        = BKTools.ParseInt(str[(int)eCSV_Card.STK]);
             info.skill01    = BKTools.ParseInt(str[(int)eCSV_Card.skill01]);
             info.skill02    = BKTools.ParseInt(str[(int)eCSV_Card.skill02]);
@@ -92,9 +100,22 @@ public class ReadText : MonoBehaviour {
 //         foreach (string _s in str) {
 //             Debug.Log(_s);
 //         }
+        //保险
+        string tmp;
+        if (list.Count == 1) {
+            tmp = (string)list[0];
+            if (tmp.Contains("\n")) {
+                list = new ArrayList(tmp.Split('\n'));
+            }
+        }
         for (int x = 1; x < list.Count; x++) {
             Skill_Info info = new Skill_Info();
             str = ((string)list[x]).Split(',');
+
+            //保险
+            if (str.Length != (int)eCSV_Skill.Max)
+                continue;
+
             info.id                 = BKTools.ParseInt(str[(int)eCSV_Skill.ID]);
             info.name               = str[(int)eCSV_Skill.Name];
             info.my_Type            = (eSkill_Type)BKTools.ParseInt(str[(int)eCSV_Skill.Type]);
@@ -149,10 +170,22 @@ public class ReadText : MonoBehaviour {
 
     static void AnalyseBuffData(Data inst,ArrayList list) {
         string[] str;
-
+        //保险
+        string tmp;
+        if (list.Count == 1) {
+            tmp = (string)list[0];
+            if (tmp.Contains("\n")) {
+                list = new ArrayList(tmp.Split('\n'));
+            }
+        }
         for (int x = 1; x < list.Count; x++) {
+
             Buff_Info info = new Buff_Info();
             str = ((string)list[x]).Split(',');
+
+            //保险
+            if (str.Length != (int)eCSV_Buff.Max)
+                continue;
 
             info.id = BKTools.ParseInt( str[(int)eCSV_Buff.ID]);
             info.name = str[(int)eCSV_Buff.Name];

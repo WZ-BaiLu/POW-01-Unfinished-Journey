@@ -271,6 +271,7 @@ public int[] my_grid_godir;
 [*]缺陷，原本的棋盘格子有绑定点击事件，但从关卡加载的没有【并非绑定问题，是不小心在turnphase的代码中写反了game_state的if判断】
 [*]Level1寻路会出错
 [*]离开关卡后要全部删除，否则关卡状态好保留
+[bug]编辑模式没有获得卡片数据。推测BKTools.dic_battle_scene_content的加载对编辑模式数据有影响，编辑地图时卡片信息未初始化
 [todo-big]加载和删除内容放在Loading关卡，做异步处理
 [bug]UnitList中修改Grid-24的单位的属性，作用到了Grid-0的单位上
 [bug]区域编辑对应关系有问题

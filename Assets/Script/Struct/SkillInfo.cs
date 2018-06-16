@@ -20,6 +20,8 @@ public enum eCSV_Skill {
     DAM,	//技能所造成的伤害
     BuffId, //buff效果
     CG_Display,//CG展示
+
+    Max
 }
 //技能事件、条件、效果原型ID
 public enum eSkill_ID {
