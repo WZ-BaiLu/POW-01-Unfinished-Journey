@@ -11,7 +11,9 @@
 /Assets/IGSoft_Tools*
 /Assets/T4M*
 /Assets/T4MOBJ*
+/Assets/Resources*
 /Assets/Res/
+/Assets/Res.meta
 /.vs/
 .DS_Store
 
