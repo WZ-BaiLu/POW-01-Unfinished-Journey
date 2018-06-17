@@ -4,6 +4,26 @@ using System.Collections;
 namespace BKKZ.POW01 {
     public class Tools {
 
+        //加载基础内容（包含重置
+        public static void LoadEditorContent() {
+            //通用资源
+            string abpath = string.Empty;
+            foreach (var item in BKTools.bundles_dir) {
+                abpath = BKTools.Assetbundle_path + BKTools.Assetbundle_Name_By_Platform + item;
+                if (!BKTools.dic_battle_scene_content.ContainsKey(item)) {
+                    BKTools.dic_battle_scene_content.Add(item, null);
+                }
+                if (BKTools.dic_battle_scene_content.ContainsKey(item)) {
+                    if (BKTools.dic_battle_scene_content[item] != null) {
+                        BKTools.dic_battle_scene_content[item].Unload(true);
+                    }
+                    if (BKTools.dic_battle_scene_content[item] == null) {
+                        BKTools.dic_battle_scene_content[item] = AssetBundle.LoadFromFile(abpath);
+                        BKTools.dic_battle_scene_content[item].LoadAllAssets();
+                    }
+                }
+            }
+        }
         public static bool CheckBox(string title, ref int data) {
             return CheckBox(title, ref data, false, null, 1, -1);
         }
@@ -208,8 +228,7 @@ namespace BKKZ.POW01 {
                 member = obj.GetType().GetMember(names[0])[0];
             else
                 member = src.GetMember(names[0])[0];
-
-
+            
             switch (member.MemberType) {
                 case System.Reflection.MemberTypes.Field:
                     var field = (System.Reflection.FieldInfo)member;

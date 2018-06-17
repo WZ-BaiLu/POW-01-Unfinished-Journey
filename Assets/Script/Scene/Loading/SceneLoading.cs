@@ -44,7 +44,7 @@ namespace BKKZ.POW01 {
             //场景资源，不能LoadAsset
             if (LevelController.BattleSceneBundle != null)
                 LevelController.BattleSceneBundle.Unload(true);
-            if (LevelController.BattleSceneBundle == null)
+            if (LevelController.BattleSceneBundle == null) 
                 LevelController.BattleSceneBundle = AssetBundle.LoadFromFile(BKTools.BattleSceneBundleDir);
         }
         public static void UnLoadBattleSceneContent() {

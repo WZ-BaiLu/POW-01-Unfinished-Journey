@@ -677,6 +677,7 @@ namespace BKKZ.POW01{
 				EditorGUILayout.EndVertical ();
 			EditorGUILayout.EndHorizontal ();
             */
+            //Debug.Log(Data.arr_Chess_key)
             if (Tools.AnalyseXMLEditor(_unit))
                 ResetUnitView();
             //			EditorGUI.PropertyField (new Rect(elemX,rect.y,elemWidth,rect.height)
@@ -1299,7 +1300,6 @@ namespace BKKZ.POW01{
 		public static void  ShowWindow () {
             if (instance != null) return;
 			var window = EditorWindow.GetWindow(typeof(MapEditor));
-			((MapEditor)window).init ();
 		}
         [MenuItem("Window/TestFn %t")]
         public static void TestFnSC(){
@@ -1350,7 +1350,9 @@ namespace BKKZ.POW01{
             //场景事件托管
             SceneView.onSceneGUIDelegate += SceneGUI;
             //Bundles内数据
-            SceneLoading.LoadBattleSceneContent();
+            AssetBundle.UnloadAllAssetBundles(true);
+            Tools.LoadEditorContent();
+            Data.Inst.GetType();
             //地图数据
             my_map_data = null;
 			instance = this;

@@ -28,8 +28,8 @@ namespace BKKZ.POW01
         /// AI编号(0为默认ai）
         [XMLLayout("类型：")]
         public eUnitType m_unit_type;
-        [XMLLayout("ID：", "Data, Assembly-CSharp;arr_Chess_name","Data, Assembly-CSharp;arr_Chess_key" )]
-        public int m_unit_id;
+        [XMLLayout("ID：", "BKKZ.POW01.Data, Assembly-CSharp;arr_Chess_name","BKKZ.POW01.Data, Assembly-CSharp;arr_Chess_key" )]
+        public int m_unit_id ;
 
         [XMLLayout("出场时机：","BKKZ.POW01.EventList, Assembly-CSharp-Editor;Instance.Arr_ID_String")]
         public int m_launch_event_order = 0;
