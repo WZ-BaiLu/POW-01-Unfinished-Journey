@@ -273,7 +273,7 @@ public int[] my_grid_godir;
 [*]离开关卡后要全部删除，否则关卡状态好保留
 [bug]编辑模式没有获得卡片数据。推测BKTools.dic_battle_scene_content的加载对编辑模式数据有影响，编辑地图时卡片信息未初始化
 [todo-big]加载和删除内容放在Loading关卡，做异步处理
-[bug]UnitList中修改Grid-24的单位的属性，作用到了Grid-0的单位上
-[bug]区域编辑对应关系有问题
+[*]UnitList中修改Grid-24的单位的属性，作用到了Grid-0的单位上	2018年06月18日16:48:30
+[*]区域编辑对应关系有问题
 [todo]不切换格子，单位列表就不更新，已经离开这个格子的单位还在格子上……
 [todo]checkContainerDownLimit写法需要更新，用搜索方式解决

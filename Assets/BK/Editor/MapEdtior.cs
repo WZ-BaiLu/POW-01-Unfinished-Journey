@@ -585,8 +585,14 @@ namespace BKKZ.POW01{
                 if (!my_arealist.datalist[i])
                     continue;
                 foreach (var item in my_map_data.list_area_grid[i].list) {
-                    GameObject obj = Instantiate(t, lv_ctrl.list_grid[item].transform);
-                    obj.transform.localPosition = Vector3.back;
+                    //TODO 效率或许不太高
+                    foreach (var grid in lv_ctrl.list_grid) {
+                        if(grid.number == item){
+                            GameObject obj = Instantiate(t, grid.transform);
+                            obj.transform.localPosition = Vector3.back;
+                        }
+                    }
+                    
                 }
             }
         }
