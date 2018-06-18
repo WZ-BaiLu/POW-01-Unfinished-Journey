@@ -79,10 +79,15 @@ namespace BKKZ.POW01 {
             }
         }
         void PerformSpeak(DramaSection section){
-            UILevelMain.Inst.ShowDialoge(section.manfenzuowen,DialogeCallback);
+            UILevelMain.Inst.ShowDialoge(section.manfenzuowen,DialogeContinueCallback);
         }
-        void DialogeCallback(){
+        void DialogeContinueCallback(){
             analya_finish = true;
+            UILevelMain.Inst.HideDialoge();
+        }
+        void LastDialogeCallback(){
+            analya_finish = true;
+            UILevelMain.Inst.HideDialoge();
         }
         //修改全局开关和变量
         void LogicModifySwitch(DramaSection section) {

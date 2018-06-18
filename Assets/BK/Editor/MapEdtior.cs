@@ -637,7 +637,7 @@ namespace BKKZ.POW01{
             my_unitlist.OnInspectorGUI();
             if (my_unitlist.datalist.Count <= 0)
                 return;
-            UnitInfo _unit = my_map_data.list_unit_data[UnitList.now_unit_order];
+            UnitInfo _unit = my_map_data.list_unit_data[my_unitlist.datalist[UnitList.now_unit_order]];
 
             /*  2017年11月18日09:27:33 全面改用XML系统
 			//格子上单位详情

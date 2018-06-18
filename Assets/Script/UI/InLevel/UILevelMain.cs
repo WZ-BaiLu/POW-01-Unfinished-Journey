@@ -35,6 +35,8 @@ public class UILevelMain : MonoBehaviour {
     }
     public void HideDialoge(){
         PanelDialoge.gameObject.SetActive(false);
+    }
+    public void ClickDialoge(){
         DialogeCallback();
     }
 }
