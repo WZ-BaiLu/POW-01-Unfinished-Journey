@@ -6,7 +6,6 @@ public class SceneMainMenu : MonoBehaviour {
     public string scene_level_name = "Level1";
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame

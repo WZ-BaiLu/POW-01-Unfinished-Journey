@@ -30,11 +30,14 @@ public class ReadText : MonoBehaviour {
 
         return t_aArrayList; // 将数组链表容器返回
     }
-	static ArrayList fnLoadFile(AssetBundle bundle,string path){
-		var ta = bundle.LoadAsset<TextAsset> (path);
+    static ArrayList fnLoadFile(eResBundle eID,string path){
+
+        //BKTools.Assetbundle_path + BKTools.Assetbundle_Name_By_Platform + BKTools.bundles_dir[(int)eID]
+        //var ta = BKTools.getBundle(eID).LoadAsset<TextAsset> (path);
+        var ta = BKTools.LoadAsset<TextAsset>(eID, path);
 		var xmlText = ta.text;
 		ArrayList t_aArrayList = new ArrayList(); // 容器
-		string[] arrs = xmlText.Split(new string[]{"\r\n"},StringSplitOptions.RemoveEmptyEntries);
+		string[] arrs = xmlText.Split(new string[]{"\r\n","\n"},StringSplitOptions.RemoveEmptyEntries);
 		foreach (string str in arrs) {
 			t_aArrayList.Add (str);
 		}
@@ -44,29 +47,21 @@ public class ReadText : MonoBehaviour {
     void Start() {
 		//initData();
     }
-	static string m_sPath = "CSV/";
+	static string m_sPath =  "Assets/Res/CSV/";
 	public static void initData(Data inst){
 		if (Data.has_init)
 			return;
 //        string m_sPath = Application.dataPath + "/Resources/CSV/";
 		ArrayList list;
-		list = fnLoadFile(BKTools.getBundle(eResBundle.CSV_Skill), "skill");
+        list = fnLoadFile(eResBundle.CSV_Skill,m_sPath + "skill.csv");
 		AnalyseSkillData(inst,list);
-		list = fnLoadFile(BKTools.getBundle(eResBundle.CSV_Card),"card");  //卡牌关联的技能数据要从skill中获取，必须先初始化skill
+        list = fnLoadFile(eResBundle.CSV_Card,m_sPath + "card.csv");  //卡牌关联的技能数据要从skill中获取，必须先初始化skill
         AnalyseCardData(inst,list);
-		list = fnLoadFile(BKTools.getBundle(eResBundle.CSV_Buff),"buff");
+        list = fnLoadFile(eResBundle.CSV_Buff,m_sPath + "buff.csv");
         AnalyseBuffData(inst,list);
 		Data.has_init = true;
 	}
     static void AnalyseCardData(Data inst,ArrayList list) {
-        //保险
-        string tmp;
-        if(list.Count==1){
-            tmp = (string)list[0];
-            if(tmp.Contains("\n")){
-                list = new ArrayList(tmp.Split('\n'));
-            }
-        }
         string[] str,str_img;
         str_img = new string[list.Count - 1];//头
         for (int x = 1; x < list.Count; x++) {
@@ -100,14 +95,6 @@ public class ReadText : MonoBehaviour {
 //         foreach (string _s in str) {
 //             Debug.Log(_s);
 //         }
-        //保险
-        string tmp;
-        if (list.Count == 1) {
-            tmp = (string)list[0];
-            if (tmp.Contains("\n")) {
-                list = new ArrayList(tmp.Split('\n'));
-            }
-        }
         for (int x = 1; x < list.Count; x++) {
             Skill_Info info = new Skill_Info();
             str = ((string)list[x]).Split(',');
@@ -170,14 +157,6 @@ public class ReadText : MonoBehaviour {
 
     static void AnalyseBuffData(Data inst,ArrayList list) {
         string[] str;
-        //保险
-        string tmp;
-        if (list.Count == 1) {
-            tmp = (string)list[0];
-            if (tmp.Contains("\n")) {
-                list = new ArrayList(tmp.Split('\n'));
-            }
-        }
         for (int x = 1; x < list.Count; x++) {
 
             Buff_Info info = new Buff_Info();

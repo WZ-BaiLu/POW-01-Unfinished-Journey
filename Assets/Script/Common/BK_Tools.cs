@@ -229,7 +229,18 @@ namespace BKKZ.POW01 {
         public static GameObject getBundleObject(eResBundle bundle_id,string asset_path) {
             return getBundle(bundle_id).LoadAsset<GameObject>(asset_path);
         }
-
+        public static T LoadAsset<T>(eResBundle eID,string asset_path) where T:UnityEngine.Object{
+#if !UNITY_EDITOR
+            //if (BundleDic.ContainsKey(bundles_dir[(int)eID]))
+            return BundleDic[bundles_dir[(int)eID]].LoadAsset<T>(asset_path);
+#else
+            //else{
+            //return getBundle(eResBundle.Image).LoadAsset<T>(asset_path);
+            //Debug.Log(Application.dataPath + "/../" + asset_path);
+            return UnityEditor.AssetDatabase.LoadAssetAtPath<T>(asset_path);
+#endif
+            //System.IO.File.Open
+        }
         public static int ParseInt(string str) {
             if (str == "") {
                 return -1;

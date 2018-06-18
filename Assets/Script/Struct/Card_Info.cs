@@ -66,17 +66,17 @@ namespace BKKZ.POW01 {
             Texture2D t2d;
             foreach (KeyValuePair<int, Card_Info> _info in Data.Inst.card_data) {
                 //卡牌详情图
-                o = BKTools.getBundle(eResBundle.Image).LoadAsset( card_path + _info.Value.img + ".png");
+                o = BKTools.LoadAsset<UnityEngine.Object>(eResBundle.Image, card_path + _info.Value.img + ".png");
                 t2d = o as Texture2D;
                 sprite = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), new Vector2(0.5f, 0.5f));
                 dic_id_card_sprite.Add(_info.Key, sprite);
                 //手牌图
-                o = BKTools.getBundle(eResBundle.Image).LoadAsset( hand_path + _info.Value.img + ".png");
+                o = BKTools.LoadAsset<UnityEngine.Object>(eResBundle.Image, hand_path + _info.Value.img + ".png");
                 t2d = o as Texture2D;
                 sprite = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), new Vector2(0.5f, 0.5f));
                 dic_id_hand_sprite.Add(_info.Key, sprite);
                 //棋子图
-                o = BKTools.getBundle(eResBundle.Image).LoadAsset( chess_path + _info.Value.img + ".png");
+                o = BKTools.LoadAsset<UnityEngine.Object>(eResBundle.Image, chess_path + _info.Value.img + ".png");
                 t2d = o as Texture2D;
                 sprite = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), new Vector2(0.5f, 0.5f));
                 dic_id_chess_sprite.Add(_info.Key, sprite);
@@ -88,7 +88,7 @@ namespace BKKZ.POW01 {
             imgs[2] = "ion_ang";
             //手动初始化职业图标
             for (int i = 0; i < (int)eCard_Vocation.Max; i++) {
-                o = BKTools.getBundle(eResBundle.Image).LoadAsset( vocation_path + imgs[i % imgs.Length] + ".png");
+                o = BKTools.LoadAsset<UnityEngine.Object>(eResBundle.Image, vocation_path + imgs[i % imgs.Length] + ".png");
                 t2d = o as Texture2D;
                 sprite = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), new Vector2(0.5f, 0.5f));
                 dic_vocation_sprite.Add((eCard_Vocation)i, sprite);

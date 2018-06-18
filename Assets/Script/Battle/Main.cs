@@ -182,6 +182,7 @@ namespace BKKZ.POW01 {
 
             //加载地图数据
             lv_ctrl = GameObject.FindGameObjectWithTag("LevelCtrl").GetComponent<LevelController>();
+            lv_ctrl.map_data = Instantiate(lv_ctrl.map_data);
             //chess_border = Instantiate(Resources.Load<GameObject>("Prefabs/chesscontainer"));
             initMapHH();
             //        //棋盘位置数据
