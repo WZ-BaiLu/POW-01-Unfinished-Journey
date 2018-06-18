@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BKKZ.POW01.AI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 namespace BKKZ.POW01 {
@@ -36,6 +37,7 @@ namespace BKKZ.POW01 {
                 StartCoroutine(corShoukan(section));
                 break;
             case eDramaOperationType.Speak:
+                PerformSpeak(section);
                 break;
             case eDramaOperationType.Skill:
                 break;
@@ -75,6 +77,12 @@ namespace BKKZ.POW01 {
                 Debug.LogError("剧本数据出错");
                 break;
             }
+        }
+        void PerformSpeak(DramaSection section){
+            UILevelMain.Inst.ShowDialoge(section.manfenzuowen,DialogeCallback);
+        }
+        void DialogeCallback(){
+            analya_finish = true;
         }
         //修改全局开关和变量
         void LogicModifySwitch(DramaSection section) {

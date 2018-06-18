@@ -217,9 +217,9 @@ namespace BKKZ.POW01 {
             }
         }
         //可以被LoadAllAssets的Bundle【Scene除外
-        public static string[] bundles_dir = new string[] { "temp/base_content_bundle", "temp/ef", "temp/image", "temp/prefabs", "pve_level_data", "csv_buff", "csv_card", "csv_skill" };
+        public static string[] bundles_dir = { "temp/base_content_bundle", "temp/ef", "temp/image", "temp/prefabs", "pve_level_data", "csv_buff", "csv_card", "csv_skill" };
         public static string BattleSceneBundleDir {
-            get { return Application.dataPath + "/../AssetBundles/" + BKTools.Assetbundle_Name_By_Platform + "battle_level"; }
+            get { return Application.dataPath + "/../AssetBundles/" + Assetbundle_Name_By_Platform + "battle_level"; }
         }
         public static Dictionary<string, AssetBundle> dic_battle_scene_content = new Dictionary<string, AssetBundle>();
         public static Dictionary<string, AssetBundle> BundleDic { get { return dic_battle_scene_content; } }
