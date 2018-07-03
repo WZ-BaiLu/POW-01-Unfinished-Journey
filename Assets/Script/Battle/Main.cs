@@ -299,7 +299,7 @@ namespace BKKZ.POW01 {
             int size_count = 0;
             for (int x = 0; x < lv_ctrl.map_data.my_size[0]; x++) {
                 for (int y = 0; y < lv_ctrl.map_data.my_size[1]; y++) {
-                    ChessContainer new_grid = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs,PrefabPath.ChessGrid)).GetComponent<ChessContainer>();
+                    ChessContainer new_grid = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs,PrefabPath.ChessGrid)).GetComponent<ChessContainer>();
                     new_grid.number = size_count++;
                     new_grid.row = y;
                     new_grid.column = x;
@@ -470,7 +470,7 @@ namespace BKKZ.POW01 {
         public void GenerateTurnPhase() {
 
 
-            TurnPhase toPhase = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs, PrefabPath.ExplorerPhase),NodePhaseControler.transform).GetComponent<TurnPhase>();
+            TurnPhase toPhase = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.ExplorerPhase),NodePhaseControler.transform).GetComponent<TurnPhase>();
             toPhase.gameObject.SetActive(false);
             explore_phase = toPhase;
             CheckAndInsertPhase(ref now_turnphase, toPhase,eEventTrigger.Phase_Change,null);
@@ -495,7 +495,7 @@ namespace BKKZ.POW01 {
             //      if (levelinfo.isNowEventConditionReady (true)) {
             int[] evt_id = lv_ctrl.isNowEventConditionReady(event_trigger, -1, chess_argu);
             foreach (var id in evt_id) {
-                DramaPhase phase = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs, PrefabPath.DramaPhase), NodePhaseControler.transform).GetComponent<DramaPhase>();
+                DramaPhase phase = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.DramaPhase), NodePhaseControler.transform).GetComponent<DramaPhase>();
                 DramaScript script = DramaScript.Generate(lv_ctrl, id);
                 phase.drama_script = script;
                 if (first_new_phase == null)
@@ -1289,7 +1289,7 @@ namespace BKKZ.POW01 {
 
             List<Card> list = new List<Card>();
             for (int i = 0; i < 20; i++) {
-                GameObject obj = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs, PrefabPath.NeoCard), parent.transform);
+                GameObject obj = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.NeoCard), parent.transform);
                 Card c = obj.GetComponent<Card>();
                 c.card_id = number[i];
                 c.MouseDown = MouseDownOnCard;

@@ -201,7 +201,7 @@ public class TurnPhase : MonoBehaviour
         Chess the_chess = null;
         if (need_new) {
             //创建棋子
-            the_chess = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs, PrefabPath.Chess)).GetComponent<Chess>();
+            the_chess = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.Chess)).GetComponent<Chess>();
             the_chess.attribute.card_id = card_id;
             the_chess.belong = card_belong;
             the_chess.owner = card_belong;

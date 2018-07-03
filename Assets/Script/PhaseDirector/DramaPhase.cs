@@ -200,7 +200,7 @@ namespace BKKZ.POW01 {
             //setChessPlayer(1001, ePlayer.Player1, Main.Inst.chess_grids[section.to_grid_id]);
             Debug.Log("草拟吗，到底能不能玩断点啦!");
             // 切换阶段 （不能使用插入，不然会使得当前不止一个阶段对象响应事件——已经造成过召唤剧情成功生成未执行时被认为已经被杀光的错误
-            AppendPhase(Instantiate(BKTools.getBundleObject(eResBundle.Prefabs, PrefabPath.PlayerDrawPhase), Main.Inst.NodePhaseControler.transform).GetComponent<TurnPhase>());
+            AppendPhase(Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.PlayerDrawPhase), Main.Inst.NodePhaseControler.transform).GetComponent<TurnPhase>());
             Main.Inst.redDancer(KEY_corBattleStart);
             //召唤怪物阵容 - 由原来的事件机制完成
 

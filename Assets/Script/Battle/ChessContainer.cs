@@ -177,7 +177,8 @@ namespace BKKZ.POW01 {
             if (AniFog == null) {
                 //增加sprite
                 //aniFog = Instantiate(Resources.Load<GameObject>(PrefabPath.ChessGridFog), transform).GetComponent<Animator>();
-                aniFog = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs,PrefabPath.ChessGridFog), transform).GetComponent<Animator>();
+                //aniFog = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs,PrefabPath.ChessGridFog), transform).GetComponent<Animator>();
+                aniFog = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.ChessGridFog), transform).GetComponent<Animator>();
             }
             if (aniFogState <= 0) return;
             aniFogState = 0;

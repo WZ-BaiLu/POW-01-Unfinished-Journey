@@ -261,7 +261,7 @@ namespace BKKZ.POW01 {
         }
 
         public static GameObject addVFX(string obj) {
-            return addVFX(getBundleObject(eResBundle.Prefabs, obj));
+            return addVFX(LoadAsset<GameObject>(eResBundle.Prefabs, obj));
         }
         public static GameObject addVFX(GameObject obj) {
             if (obj == null)
@@ -270,7 +270,7 @@ namespace BKKZ.POW01 {
             return vfx;
         }
         public static BK_AnimEvts addVFX_Dancer(string obj) {
-            return addVFX_Dancer(getBundleObject(eResBundle.Prefabs, obj));
+            return addVFX_Dancer(LoadAsset<GameObject>(eResBundle.Prefabs, obj));
         }
         public static BK_AnimEvts addVFX_Dancer(GameObject obj) {
             if (obj == null)
