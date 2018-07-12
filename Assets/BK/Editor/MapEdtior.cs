@@ -468,11 +468,15 @@ namespace BKKZ.POW01{
                 {
                     if (GUILayout.Button("Del")) {
                         ChessContainer cc;
+                        bool changed = false;
+                        if (Selection.gameObjects.Length > 0)
+                            changed = true;
                         foreach (var item in Selection.gameObjects) {
                             cc = item.GetComponent<ChessContainer>();
                             lv_ctrl.list_grid.Remove(cc);
                             DestroyImmediate(cc.gameObject);
                         }
+                        if(changed) UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
                     }
                     if (GUILayout.Button("关联")) {
                         foreach (var item in Selection.gameObjects) {
