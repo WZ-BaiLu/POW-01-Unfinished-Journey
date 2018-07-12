@@ -134,6 +134,8 @@ namespace BKKZ.POW01{
             }
             //编辑对象信息
             GUI_select_info();
+            //其他信息
+            GUI_Help();
             //鼠标事件
             UpdateMouseInputs();
 #if TEST_EDITOR
@@ -270,6 +272,9 @@ namespace BKKZ.POW01{
                 Debug.Log("笔刷状态错误");
                 break;
             }
+        }
+        void GUI_Help() {
+            GUILayout.Label("场景内容好地图数据分开保存，请在地图编辑器和Unity中各执行一次保存操作。");
         }
         //		bool b_fresh = false;
         void GUI_MapInfo() {
@@ -584,7 +589,28 @@ namespace BKKZ.POW01{
 
         void ResetAreaView() {
             ClearAreaView();
+            //冗余数据检测并清除
+            bool number_redundancy = true;
+            for (int i = my_arealist.datalist.Count-1; i >= 0 ; i--) {
+                if (!my_arealist.datalist[i])
+                    continue;
+                int item;
+                for(int j = my_map_data.list_area_grid[i].list.Count - 1; j >= 0; j--) {
+                    item = my_map_data.list_area_grid[i].list[j];
+                    //foreach (var item in my_map_data.list_area_grid[i].list) {
+                    //TODO 效率或许不太高
+                    number_redundancy = true;
+                    foreach (var grid in lv_ctrl.list_grid) {
+                        if (grid.number == item) {
+                            number_redundancy = false;
+                            break;
+                        }
+                    }
+                    if (number_redundancy)
+                        my_map_data.list_area_grid[i].list.Remove(item);
 
+                }
+            }
             GameObject t = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/BK/Editor/Prefabs/chess_grid_area_mark.prefab");
             //多区域同时显示
             for (int i = 0; i < my_arealist.datalist.Count; i++) {

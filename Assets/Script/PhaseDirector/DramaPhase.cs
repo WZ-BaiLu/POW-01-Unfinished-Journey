@@ -104,7 +104,7 @@ namespace BKKZ.POW01 {
             default:
                 break;
             }
-
+            analya_finish = true;
         }
         //修改全局开关和变量
         void LogicModifyVariable(DramaSection section) {
@@ -128,7 +128,7 @@ namespace BKKZ.POW01 {
                 Main.Inst.lv_ctrl.global_variable[section.variable_index] = (int)Mathf.Pow(Main.Inst.lv_ctrl.global_variable[section.variable_index], section.v_int);
                 break;
             }
-
+            analya_finish = true;
         }
         IEnumerator corShowArea(DramaSection section) {
             //开放活动区域
