@@ -212,7 +212,7 @@ namespace BKKZ.POW01{
                                 case eBrushState.Grid:
                                     //修改地形
                                     int select_grid_type = my_brush_select - 1;
-                                    my_map_data.my_grid_t_type[grid.number] = (eMapGridType)select_grid_type;
+                                    grid.terrain_type = (eMapGridType)select_grid_type;
                                     //                              grid.GetComponent<SpriteRenderer> ().color = grid_color [select_grid_type];
                                     setGridDisplay(grid);
                                     break;
@@ -542,7 +542,7 @@ namespace BKKZ.POW01{
         ChessContainer ExtendGrid(ChessContainer base_grid, eDirection dir) {
             ChessContainer new_grid = base_grid.GetAround(dir);
             if (new_grid == null) {
-                new_grid = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs, PrefabPath.ChessGrid)).GetComponent<ChessContainer>();
+                new_grid = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.ChessGrid)).GetComponent<ChessContainer>();
                 new_grid.number = max_grid_number++;
                 lv_ctrl.list_grid.Add(new_grid);
                 new_grid.transform.SetParent(lv_ctrl.chess_board.transform, true);
@@ -615,7 +615,7 @@ namespace BKKZ.POW01{
                     new_pos = item.transform.position;
             }
             //创建棋子
-            Chess newchess = Instantiate(BKTools.getBundleObject(eResBundle.Prefabs,PrefabPath.Chess)).GetComponent<Chess>();
+            Chess newchess = Instantiate(BKTools.LoadAsset<GameObject>(eResBundle.Prefabs,PrefabPath.Chess)).GetComponent<Chess>();
             newchess.attribute.card_id = unit.m_unit_id;
             newchess.transform.parent = lv_ctrl.chess_board.transform;
             newchess.transform.position = Vector3.back + new_pos;
@@ -1203,7 +1203,7 @@ namespace BKKZ.POW01{
 			if (my_map_data == null)
 				return;
             //ClearScene ();
-            lv_ctrl.chess_board = Instantiate (BKTools.getBundleObject(eResBundle.Prefabs, PrefabPath.ChessBoard));
+            lv_ctrl.chess_board = Instantiate (BKTools.LoadAsset<GameObject>(eResBundle.Prefabs, PrefabPath.ChessBoard));
             lv_ctrl.list_grid = new List<ChessContainer> ();
 			//重新建立棋盘
 			bool b_odd = true;
@@ -1211,7 +1211,7 @@ namespace BKKZ.POW01{
 			int size_count = 0;
 			for (int x = 0; x < my_map_data.my_size[0]; x++) {
 				for (int y = 0; y < my_map_data.my_size[1]; y++) {
-					ChessContainer new_grid = Instantiate (BKTools.getBundleObject(eResBundle.Prefabs,PrefabPath.ChessGrid)).GetComponent<ChessContainer>();
+					ChessContainer new_grid = Instantiate (BKTools.LoadAsset<GameObject>(eResBundle.Prefabs,PrefabPath.ChessGrid)).GetComponent<ChessContainer>();
 					new_grid.number = size_count++;
 					new_grid.row = y;
 					new_grid.column = x;
