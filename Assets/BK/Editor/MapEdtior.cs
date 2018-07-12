@@ -373,7 +373,9 @@ namespace BKKZ.POW01{
             }
         }
         void SaveData() {
+            //所有保存需要先标记修改
             EditorUtility.SetDirty(my_map_data);
+            //非远程编辑机操作，需要手动保存
             AssetDatabase.SaveAssets();
             //foreach (var item in my_map_data.list_area_grid) {
             //item.list_ser = item.list.ToArray();
