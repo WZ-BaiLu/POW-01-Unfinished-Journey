@@ -195,6 +195,13 @@ namespace BKKZ.POW01{
                     //					Debug.Log (str);
                     //					return;
                     UpdateMouseInputs();
+                    Event e = Event.current;
+                    if (EventType.KeyDown == e.type && KeyCode.LeftControl == e.keyCode) {
+                        m_isLeftCtrlDown = true;
+                    }
+                    if (EventType.KeyUp == e.type && KeyCode.LeftControl == e.keyCode) {
+                        m_isLeftCtrlDown = false;
+                    }
                     //抛弃选择
                     if (m_isMouseLeftDown)
                         Selection.objects = new Object[1];
@@ -221,9 +228,9 @@ namespace BKKZ.POW01{
                                 case eBrushState.Area:
                                     if (my_map_data.list_area_grid.Count <= AreaList.now_area_index || my_map_data.list_area_grid[AreaList.now_area_index].list == null)
                                         break;
-                                    if (my_brush_select == 0 && my_map_data.list_area_grid[AreaList.now_area_index].list.Contains(grid.number))
+                                    if (m_isLeftCtrlDown && m_isMouseLeft && my_map_data.list_area_grid[AreaList.now_area_index].list.Contains(grid.number))
                                         my_map_data.list_area_grid[AreaList.now_area_index].list.Remove(grid.number);
-                                    else if (my_brush_select == 1 && !my_map_data.list_area_grid[AreaList.now_area_index].list.Contains(grid.number))
+                                    else if (!m_isLeftCtrlDown && m_isMouseLeft && !my_map_data.list_area_grid[AreaList.now_area_index].list.Contains(grid.number))
                                         my_map_data.list_area_grid[AreaList.now_area_index].list.Add(grid.number);
                                     ResetAreaView();
                                     break;
@@ -906,7 +913,10 @@ namespace BKKZ.POW01{
         }
         void GUI_AreaEdit() {
 
-            my_brush_select = GUILayout.Toolbar(my_brush_select, str_area_brush_name);
+            //my_brush_select = GUILayout.Toolbar(my_brush_select, str_area_brush_name);
+            GUILayout.Label("左键添加，CTRL+左键删除");
+
+
             //my_brush_select = 0;
             my_arealist.OnInspectorGUI();
 
@@ -1505,6 +1515,7 @@ namespace BKKZ.POW01{
 		//bool m_isMouseMiddle;
 		bool m_isMouseLeftDown;
 		bool m_isMouseRightDown;
+        bool m_isLeftCtrlDown = false;
 		//bool m_isMouseMiddleDown;
 
 		void UpdateMouseInputs()
