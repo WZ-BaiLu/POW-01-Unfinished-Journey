@@ -843,6 +843,7 @@ namespace BKKZ.POW01{
             //EditorGUILayout.EndVertical ();
 
         }
+        static float space_for_up_dpwm_delete = 150;
         void GUI_DramaList(EventInfo edit_event) {
 
             GUILayout.Label("———————事件———————");
@@ -853,7 +854,7 @@ namespace BKKZ.POW01{
                     //style
                     GUIStyle g_style = new GUIStyle(GUI.skin.button);
                     g_style.alignment = TextAnchor.MiddleLeft;
-                    if (GUILayout.Button(DramaSectionWindows.Drama2String(section), g_style, GUILayout.Width(position.width - 100))) {
+                    if (GUILayout.Button(DramaSectionWindows.Drama2String(section), g_style, GUILayout.Width(position.width - space_for_up_dpwm_delete))) {
                         DramaSectionWindows.ShowWindow(i, section);
                     }
                     if (GUILayout.Button("↑"))
@@ -893,7 +894,6 @@ namespace BKKZ.POW01{
                     }
                 );
             }
-
 
 
             if (EditorGUILayout.DropdownButton(new GUIContent("Add"), FocusType.Keyboard, GUILayout.Width(50))) {
